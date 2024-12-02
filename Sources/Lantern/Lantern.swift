@@ -231,7 +231,7 @@ open class Lantern: UIViewController, UIViewControllerTransitioningDelegate, UIN
         }
     }
     
-    func addCustomNavView() {
+    open func addCustomNavView() {
         if let v = navView {
             self.view.addSubview(v)
         }
