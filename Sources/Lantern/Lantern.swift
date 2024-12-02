@@ -325,6 +325,7 @@ open class Lantern: UIViewController, UIViewControllerTransitioningDelegate, UIN
     /// 关闭PhotoBrowser
     open func dismiss() {
         setStatusBar(hidden: false)
+        dismissNavView()
         pageIndicator?.removeFromSuperview()
         if presentingViewController != nil {
             self.presentingViewController?.dismiss(animated: true, completion: nil)
