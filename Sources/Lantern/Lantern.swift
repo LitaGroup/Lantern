@@ -110,6 +110,11 @@ open class Lantern: UIViewController, UIViewControllerTransitioningDelegate, UIN
         return view
     }()
     
+    // 自定义导航
+    open var navView: UIView?
+    // 点击cell是否dismiss
+    open var tapCellDismiss: Bool = true
+    
     open weak var previousNavigationControllerDelegate: UINavigationControllerDelegate?
     
     deinit {
@@ -222,6 +227,43 @@ open class Lantern: UIViewController, UIViewControllerTransitioningDelegate, UIN
         } else {
             if let barHidden = isPreviousNavigationBarHidden {
                 navigationController?.setNavigationBarHidden(barHidden, animated: false)
+            }
+        }
+    }
+    
+    func addCustomNavView() {
+        if let v = navView {
+            self.view.addSubview(v)
+        }
+    }
+    
+    func controlNavView() {
+        if let v = navView {
+            if v.isHidden {
+                showNavView()
+            }else {
+                dismissNavView()
+            }
+        }
+    }
+    
+    func showNavView() {
+        if let v = navView {
+            v.isHidden = false
+            UIView.animate(withDuration: 0.2) {
+                v.alpha = 1
+            } completion: { finish in
+                
+            }
+        }
+    }
+    
+    func dismissNavView() {
+        if let v = navView {
+            UIView.animate(withDuration: 0.2) {
+                v.alpha = 0
+            } completion: { finish in
+                v.isHidden = true
             }
         }
     }

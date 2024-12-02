@@ -232,7 +232,11 @@ open class LanternImageCell: UIView, UIScrollViewDelegate, UIGestureRecognizerDe
     
     /// 单击
     @objc open func onSingleTap(_ tap: UITapGestureRecognizer) {
-        lantern?.dismiss()
+        if lantern?.tapCellDismiss ?? true {
+            lantern?.dismiss()
+        }else {
+            lantern?.controlNavView()
+        }
     }
     
     /// 双击
